@@ -14,7 +14,6 @@
 		749DFDC224705C9A007CE3C6 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749DFDC124705C9A007CE3C6 /* AuthError.swift */; };
 		749DFDC624717C6C007CE3C6 /* FindLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749DFDC524717C6C007CE3C6 /* FindLocationViewController.swift */; };
 		749DFDC824717C86007CE3C6 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749DFDC724717C86007CE3C6 /* AddLocationViewController.swift */; };
-		749DFDCF24724408007CE3C6 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749DFDCE24724408007CE3C6 /* StudentInformation.swift */; };
 		749DFDD124727E6E007CE3C6 /* StudentLocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749DFDD024727E6E007CE3C6 /* StudentLocationRequest.swift */; };
 		74FA37A7246EA007009DF480 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA37A6246EA007009DF480 /* AppDelegate.swift */; };
 		74FA37A9246EA007009DF480 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA37A8246EA007009DF480 /* SceneDelegate.swift */; };
@@ -34,7 +33,6 @@
 		749DFDC124705C9A007CE3C6 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		749DFDC524717C6C007CE3C6 /* FindLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLocationViewController.swift; sourceTree = "<group>"; };
 		749DFDC724717C86007CE3C6 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
-		749DFDCE24724408007CE3C6 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		749DFDD024727E6E007CE3C6 /* StudentLocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationRequest.swift; sourceTree = "<group>"; };
 		74FA37A3246EA007009DF480 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74FA37A6246EA007009DF480 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				749DFDBA246FCFE1007CE3C6 /* OnTheMapAPI.swift */,
-				749DFDCE24724408007CE3C6 /* StudentInformation.swift */,
 				749DFDCD2471AA09007CE3C6 /* Requests */,
 				749DFDC02470577B007CE3C6 /* Responses */,
 			);
@@ -219,7 +216,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				749DFDCF24724408007CE3C6 /* StudentInformation.swift in Sources */,
 				749DFDC624717C6C007CE3C6 /* FindLocationViewController.swift in Sources */,
 				749DFDD124727E6E007CE3C6 /* StudentLocationRequest.swift in Sources */,
 				749DFDB7246FC4B4007CE3C6 /* StudentLocationResponse.swift in Sources */,

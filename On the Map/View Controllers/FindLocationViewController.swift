@@ -62,8 +62,8 @@ class FindLocationViewController: UIViewController {
     
     func performForwardGeocoding(with address: String, completion: @escaping (Double, Double) -> ()){
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
-            if let error = error{
-                self.showAlert(with: error.localizedDescription)
+            if let _ = error{
+                self.showAlert(with: "Invalid Address, Try to format your address as 'City, State'")
                 self.setLoadingState(to: false)
                 return
             }
@@ -91,7 +91,7 @@ class FindLocationViewController: UIViewController {
     func showAlert(with message: String){
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        show(alert, sender: self)
+        present(alert, animated: true, completion: nil)
     }
 
 }

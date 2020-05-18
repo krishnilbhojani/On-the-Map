@@ -44,7 +44,7 @@ class MapViewController: UIViewController{
     func showAlert(with message: String){
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        show(alert, sender: self)
+        present(alert, animated: true, completion: nil)
     }
     
 }
@@ -52,8 +52,8 @@ class MapViewController: UIViewController{
 extension MapViewController: MKMapViewDelegate{
     func loadLocations(){
         OnTheMapAPI.getStudentsLocation { (studentInfo, error) in
-            if let error = error{
-                self.showAlert(with: error.localizedDescription)
+            if let _ = error{
+                self.showAlert(with: "Failed to fetch student's information")
                 return
             }
             if let studentInfo = studentInfo{
