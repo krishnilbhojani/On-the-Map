@@ -41,11 +41,21 @@ class MapViewController: UIViewController{
         }
     }
     
+    func showAlert(with message: String){
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        show(alert, sender: self)
+    }
+    
 }
 
 extension MapViewController: MKMapViewDelegate{
     func loadLocations(){
         OnTheMapAPI.getStudentsLocation { (studentInfo, error) in
+            if let error = error{
+                self.showAlert(with: error.localizedDescription)
+                return
+            }
             if let studentInfo = studentInfo{
                 self.locations = studentInfo
                 self.mapView.removeAnnotations(self.annotations)

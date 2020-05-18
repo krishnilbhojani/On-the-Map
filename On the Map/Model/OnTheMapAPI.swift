@@ -28,7 +28,7 @@ class OnTheMapAPI {
         var stringValue: String{
             switch self{
             case .studentLocation:
-                return Endpoints.base + "/StudentLocation"
+                return Endpoints.base + "/StudentLocation?limit=100&order=-updatedAt"
             case .session:
                 return Endpoints.base + "/session"
             case .signUp:

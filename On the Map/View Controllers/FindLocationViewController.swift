@@ -13,13 +13,18 @@ class FindLocationViewController: UIViewController {
     
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var linkTestField: UITextField!
-        
+    @IBOutlet weak var findButton: UIButton!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var latitude: Double?
     var longitude: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addressTextField.delegate = self
+        linkTestField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,9 +43,11 @@ class FindLocationViewController: UIViewController {
     
     @IBAction func findButton(_ sender: UIButton) {
         guard let address = addressTextField.text else { return }
+        setLoadingState(to: true)
         performForwardGeocoding(with: address) { (latitude, longitude) in
             self.latitude = latitude
             self.longitude = longitude
+            self.setLoadingState(to: false)
             self.performSegue(withIdentifier: "goToAddLocationVC", sender: self)
         }
     }
@@ -56,7 +63,8 @@ class FindLocationViewController: UIViewController {
     func performForwardGeocoding(with address: String, completion: @escaping (Double, Double) -> ()){
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
             if let error = error{
-                print(error)
+                self.showAlert(with: error.localizedDescription)
+                self.setLoadingState(to: false)
                 return
             }
             if let placemarks = placemarks, let firstPlaceMark = placemarks.first, placemarks.count > 0 && firstPlaceMark.location != nil{
@@ -66,4 +74,31 @@ class FindLocationViewController: UIViewController {
         }
     }
     
+    func setLoadingState(to isLoading: Bool){
+        if isLoading {
+            activityIndicator.startAnimating()
+            addressTextField.isEnabled = false
+            linkTestField.isEnabled = false
+            findButton.isEnabled = false
+        }else{
+            activityIndicator.stopAnimating()
+            addressTextField.isEnabled = true
+            linkTestField.isEnabled = true
+            findButton.isEnabled = true
+        }
+    }
+    
+    func showAlert(with message: String){
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        show(alert, sender: self)
+    }
+
+}
+
+extension FindLocationViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

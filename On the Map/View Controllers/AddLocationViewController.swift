@@ -56,9 +56,16 @@ class AddLocationViewController: UIViewController {
         OnTheMapAPI.postStudentLocation(studentLocation: studentLocation) { (success) in
             if success{
                 self.dismiss(animated: true, completion: nil)
+            }else{
+                self.showAlert(with: "Location Posting Failed")
             }
         }
-        
+    }
+    
+    func showAlert(with message: String){
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        show(alert, sender: self)
     }
     
 }
