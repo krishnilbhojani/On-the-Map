@@ -16,14 +16,29 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loginButton.layer.cornerRadius = 5
-        loginButton.layer.masksToBounds = true
-        
     }
 
     @IBAction func loginButton(_ sender: Any) {
-        
+        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+
+        OnTheMapAPI.postSession(username: email, password: password) { (success, error) in
+            if success{
+                self.performSegue(withIdentifier: "goToTabBarController", sender: self)
+            }else{
+                guard let errorMessage = error?.localizedDescription else { return }
+                self.showLoginError(message: errorMessage)
+            }
+        }
+    }
+    
+    @IBAction func signUpButton(_ sender: UIButton) {
+        UIApplication.shared.open(OnTheMapAPI.Endpoints.session.url, options: [:], completionHandler: nil)
+    }
+    
+    func showLoginError(message: String){
+        let alert = UIAlertController(title: "Login Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
 }
